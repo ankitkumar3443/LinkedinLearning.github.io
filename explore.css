@@ -411,3 +411,6 @@ body {
 .footBar img {
   filter: grayscale(100%);
 }
+.footBar div {
+  margin-right: 5px;
+}
