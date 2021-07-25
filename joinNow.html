@@ -5,20 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="signUp.css" />
-    <link rel="shortcut icon" href="./linkedin.png" type="image/x-icon" />
+    <link rel="stylesheet" href="joinNow.css" />
   </head>
   <body>
     <div id="main_container">
       <header>
         <div class="nav-base">
-          <a class="nav-container" href="./index.html">
+          <div class="nav-container">
             <img
               class="header-logo"
               src="https://static-exp1.licdn.com/sc/h/6363oetsghb0zmki2rtnh3f83"
               alt="Linkedin Logo"
             />
-          </a>
+          </div>
         </div>
       </header>
 
@@ -42,19 +41,20 @@
             <input
               id="password"
               type="password"
-              placeholder="Password"
+              placeholder="Create a password"
             /><br /><br />
-            <a id="signIn" onclick="login()">Sign in</a>
+            <input
+              id="confPassword"
+              type="password"
+              placeholder="Confirm password"
+            /><br /><br />
+            <button id="signIn" onclick="checkoutsignIn(event)">Sign Up</button>
           </div>
           <div>
-            <div class="form-a">
-              <a href="" id="forgot">Forgot password?</a>
-            </div>
-
             <div class="form-new">
               <p>
                 New to LinkedIn?<span>
-                  <a href="joinNow.html">Join now</a></span
+                  <a href="signUp.html">Already have an account</a></span
                 >
               </p>
             </div>
@@ -63,8 +63,8 @@
       </div>
 
       <div class="footBar">
-        <div><img src="./Screenshot_2.jpg" /></div>
-        <div>&copy;2021</div>
+        <div><img src="./Screenshot_2.jpg"> </div>
+        <div>&copy;2021 </div>
         <div>About</div>
         <div>Accessibility</div>
         <div>User Agreement</div>
@@ -77,17 +77,24 @@
         <div>Language &#9660;</div>
       </div>
     </div>
+    </div>
   </body>
-  <script>
-    // let name = document.getElementById("signIn")
-    function login() {
-      let name = document.getElementById("name_").value
-      let password = document.getElementById("password").value
-      let data = JSON.parse(localStorage.getItem("logindata"))
-      if (data.name == name && data.password == password) {
-        console.log(data)
-        window.location.href = "checkout.html"
-      } else alert("Please Enter Right Details")
-    }
-  </script>
 </html>
+<script>
+  function checkoutsignIn(e) {
+    e.preventDefault()
+    let name = document.getElementById("name_").value
+    let password = document.getElementById("password").value
+    let confPassword = document.getElementById("confPassword").value
+    if (name && password && confPassword) {
+        let loginData={name,password}
+        if(password === confPassword){
+            localStorage.setItem("logindata", JSON.stringify(loginData));
+            alert("Account Created Sucessfully")
+            window.location.href = "signUp.html"
+        }
+        else
+        alert("Please Enter valid Details")
+    }   
+  }
+</script>
